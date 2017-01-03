@@ -1,19 +1,73 @@
-[gd_scene format=1]
+[gd_scene load_steps=3 format=1]
 
-[node name="Spatial" type="Spatial"]
+[ext_resource path="res://vr/vr_origin.tscn" type="PackedScene" id=1]
+
+[sub_resource type="FixedMaterial" id=1]
+
+flags/visible = true
+flags/double_sided = false
+flags/invert_faces = false
+flags/unshaded = false
+flags/on_top = false
+flags/lightmap_on_uv2 = true
+flags/colarray_is_srgb = true
+params/blend_mode = 0
+params/depth_draw = 1
+params/line_width = 1.84655e+25
+fixed_flags/use_alpha = false
+fixed_flags/use_color_array = false
+fixed_flags/use_point_size = false
+fixed_flags/discard_alpha = false
+fixed_flags/use_xy_normalmap = false
+params/diffuse = Color( 0.00627136, 0.535156, 0.163284, 1 )
+params/specular = Color( 0, 0, 0, 1 )
+params/emission = Color( 0, 0, 0, 1 )
+params/specular_exp = 40
+params/detail_mix = 1.0
+params/normal_depth = 1
+params/shader = 0
+params/shader_param = 0.5
+params/glow = 0
+params/point_size = 1.0
+uv_xform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+textures/diffuse_tc = 0
+textures/detail_tc = 0
+textures/specular_tc = 0
+textures/emission_tc = 0
+textures/specular_exp_tc = 0
+textures/glow_tc = 0
+textures/normal_tc = 0
+textures/shade_param_tc = 0
+
+[node name="Origin" type="Spatial"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
-[node name="HMD" type="SpatialTracker" parent="."]
+[node name="vr_origin" parent="." instance=ExtResource( 1 )]
+
+[node name="Floor" type="TestCube" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172501, 0, 0 )
-interface = 0
-tracked_device_index = 0
+transform/local = Transform( 100, 0, 0, 0, 0.1, 0, 0, 0, 100, 0, -0.1, 0 )
+layers = 1
+geometry/visible = true
+geometry/material_override = SubResource( 1 )
+geometry/cast_shadow = 1
+geometry/receive_shadows = true
+geometry/range_begin = 0.0
+geometry/range_end = 0.0
+geometry/extra_cull_margin = 0.0
+geometry/billboard = false
+geometry/billboard_y = false
+geometry/depth_scale = false
+geometry/visible_in_all_rooms = false
+geometry/use_baked_light = false
+geometry/baked_light_tex_id = 0
 
-[node name="TestCube" type="TestCube" parent="HMD"]
+[node name="TestCube 1" type="TestCube" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, 0 )
 layers = 1
 geometry/visible = true
 geometry/material_override = null
@@ -29,31 +83,10 @@ geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
 
-[node name="Camera" type="Camera" parent="."]
+[node name="TestCube 2" type="TestCube" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.33458, 18.9532 )
-projection = 0
-fov = 60.0
-eye = 0
-near = 0.1
-far = 100.0
-keep_aspect = 1
-current = false
-visible_layers = 1048575
-environment = null
-h_offset = 0.0
-v_offset = 0.0
-
-[node name="Controller 1" type="SpatialTracker" parent="."]
-
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-interface = 0
-tracked_device_index = 0
-
-[node name="TestCube" type="TestCube" parent="Controller 1"]
-
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 10 )
 layers = 1
 geometry/visible = true
 geometry/material_override = null
@@ -68,5 +101,67 @@ geometry/depth_scale = false
 geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
+
+[node name="TestCube 3" type="TestCube" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1, 15 )
+layers = 1
+geometry/visible = true
+geometry/material_override = null
+geometry/cast_shadow = 1
+geometry/receive_shadows = true
+geometry/range_begin = 0.0
+geometry/range_end = 0.0
+geometry/extra_cull_margin = 0.0
+geometry/billboard = false
+geometry/billboard_y = false
+geometry/depth_scale = false
+geometry/visible_in_all_rooms = false
+geometry/use_baked_light = false
+geometry/baked_light_tex_id = 0
+
+[node name="TestCube 4" type="TestCube" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, -4 )
+layers = 1
+geometry/visible = true
+geometry/material_override = null
+geometry/cast_shadow = 1
+geometry/receive_shadows = true
+geometry/range_begin = 0.0
+geometry/range_end = 0.0
+geometry/extra_cull_margin = 0.0
+geometry/billboard = false
+geometry/billboard_y = false
+geometry/depth_scale = false
+geometry/visible_in_all_rooms = false
+geometry/use_baked_light = false
+geometry/baked_light_tex_id = 0
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.607941, -0.513356, 0.605701, 0, 0.762864, 0.646559, -0.793982, -0.39307, 0.463776, 0, 6.08864, 3.85847 )
+layers = 1
+params/enabled = true
+params/editor_only = false
+params/bake_mode = 0
+params/energy = 1.0
+colors/diffuse = Color( 1, 1, 1, 1 )
+colors/specular = Color( 1, 1, 1, 1 )
+shadow/shadow = false
+shadow/darkening = 0.0
+shadow/z_offset = 0.05
+shadow/z_slope_scale = 0.0
+shadow/esm_multiplier = 60.0
+shadow/blur_passes = 1.0
+projector = null
+operator = 0
+shadow/mode = 0
+shadow/max_distance = 0.0
+shadow/split_weight = 0.5
+shadow/zoffset_scale = 2.0
 
 
