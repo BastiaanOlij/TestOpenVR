@@ -1,12 +1,56 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=3 format=1]
 
 [ext_resource path="res://vr/hmd.gd" type="Script" id=1]
+
+[sub_resource type="Environment" id=1]
+
+ambient_light/enabled = false
+ambient_light/color = Color( 0, 0, 0, 1 )
+ambient_light/energy = 1.0
+fxaa/enabled = false
+background/mode = 2
+background/color = Color( 0.365106, 0.255798, 0.992188, 1 )
+background/energy = 1.0
+background/scale = 1.0
+background/glow = 0.0
+background/canvas_max_layer = null
+glow/enabled = false
+glow/blur_passes = 1
+glow/blur_scale = 1
+glow/blur_strength = 1
+glow/blur_blend_mode = null
+glow/bloom = 0.0
+glow/bloom_treshold = 0.5
+dof_blur/enabled = false
+dof_blur/blur_passes = 1
+dof_blur/begin = 100.0
+dof_blur/range = 10.0
+hdr/enabled = false
+hdr/tonemapper = 0
+hdr/exposure = 0.4
+hdr/white = 1.0
+hdr/glow_treshold = 0.95
+hdr/glow_scale = 0.2
+hdr/min_luminance = 0.4
+hdr/max_luminance = 8.0
+hdr/exposure_adj_speed = 0.5
+fog/enabled = false
+fog/begin = 100.0
+fog/begin_color = Color( 0, 0, 0, 1 )
+fog/end_color = Color( 0, 0, 0, 1 )
+fog/attenuation = 1.0
+fog/bg = true
+bcs/enabled = false
+bcs/brightness = 1.0
+bcs/contrast = 1.0
+bcs/saturation = 1.0
+srgb/enabled = false
 
 [node name="vr_origin" type="Node"]
 
 [node name="left_eye_viewport" type="Viewport" parent="."]
 
-rect = Rect2( 0, 0, 512, 512 )
+rect = Rect2( 0, 0, 1512, 1680 )
 own_world = false
 world = null
 transparent_bg = false
@@ -24,12 +68,12 @@ gui/disable_input = false
 [node name="left_eye_camera" type="Camera" parent="left_eye_viewport"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.035, 1.75, 0 )
+transform/local = Transform( -0.946309, 0.062533, 0.317159, 0.0246364, 0.992209, -0.122123, -0.322324, -0.107752, -0.940477, 0.831318, 0.553569, 1.43955 )
 projection = 0
 fov = 110.0
 eye = 0
 near = 0.1
-far = 100.0
+far = 1000.0
 keep_aspect = 1
 current = true
 visible_layers = 1048575
@@ -39,7 +83,7 @@ v_offset = 0.0
 
 [node name="right_eye_viewport" type="Viewport" parent="."]
 
-rect = Rect2( 0, 0, 512, 512 )
+rect = Rect2( 0, 0, 1512, 1680 )
 own_world = false
 world = null
 transparent_bg = false
@@ -57,12 +101,12 @@ gui/disable_input = false
 [node name="right_eye_camera" type="Camera" parent="right_eye_viewport"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.035, 1.75, 0 )
+transform/local = Transform( -0.946309, 0.062533, 0.317159, 0.0246364, 0.992209, -0.122123, -0.322324, -0.107752, -0.940477, 0.897086, 0.551857, 1.46195 )
 projection = 0
 fov = 110.0
 eye = 0
 near = 0.1
-far = 100.0
+far = 1000.0
 keep_aspect = 1
 current = true
 visible_layers = 1048575
@@ -78,16 +122,17 @@ interface = 0
 
 [node name="ViewportSprite" type="ViewportSprite" parent="."]
 
+transform/scale = Vector2( 0.3, 0.3 )
 viewport = NodePath("../left_eye_viewport")
 centered = false
 
 [node name="HMD" type="SpatialTracker" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0 )
+transform/local = Transform( -0.946324, 0.062496, 0.317121, 0.024656, 0.992228, -0.121965, -0.322278, -0.1076, -0.94051, 0.869027, 0.550889, 1.43645 )
 interface = 0
 tracked_device_index = 0
-tracked_device_name = "Not initialised"
+tracked_device_name = "generic_hmd"
 script/script = ExtResource( 1 )
 
 [node name="TestCube" type="TestCube" parent="HMD"]
@@ -114,7 +159,7 @@ geometry/baked_light_tex_id = 0
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 interface = 0
 tracked_device_index = 1
-tracked_device_name = "Not initialised"
+tracked_device_name = "vr_controller_vive_1_5"
 
 [node name="TestCube" type="TestCube" parent="Controller 1"]
 
@@ -138,9 +183,10 @@ geometry/baked_light_tex_id = 0
 [node name="Controller 2" type="SpatialTracker" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( -0.987983, 0.148217, -0.0438286, 0.154525, 0.953327, -0.259402, 0.00333521, -0.263058, -0.964774, 1.02009, 0.793715, 1.51304 )
 interface = 0
 tracked_device_index = 2
-tracked_device_name = "Not initialised"
+tracked_device_name = "vr_controller_vive_1_5"
 
 [node name="TestCube" type="TestCube" parent="Controller 2"]
 
@@ -164,9 +210,10 @@ geometry/baked_light_tex_id = 0
 [node name="Base station 1" type="SpatialTracker" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( -0.633269, -0.486736, 0.601713, -0.0155611, 0.785326, 0.618887, -0.773775, 0.382559, -0.504897, 1.6739, 2.19017, -1.01306 )
 interface = 0
 tracked_device_index = 3
-tracked_device_name = "Not initialised"
+tracked_device_name = "lh_basestation_vive"
 
 [node name="TestCube" type="TestCube" parent="Base station 1"]
 
@@ -192,7 +239,7 @@ geometry/baked_light_tex_id = 0
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 interface = 0
 tracked_device_index = 40
-tracked_device_name = "Not initialised"
+tracked_device_name = ""
 
 [node name="TestCube" type="TestCube" parent="Base station 2"]
 
@@ -212,5 +259,10 @@ geometry/depth_scale = false
 geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+environment = SubResource( 1 )
 
 
