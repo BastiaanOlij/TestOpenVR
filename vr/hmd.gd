@@ -19,12 +19,21 @@ func _process(delta):
 
 	var leftcam = get_parent().get_node("left_eye_viewport/left_eye_camera")
 	var rightcam = get_parent().get_node("right_eye_viewport/right_eye_camera")
+	var near = 0.1
+	var far = 1000.0
 	
 	if (leftcam):
 		leftcam.set_global_transform(get_lefteye_global_transform())
+		
+		var frustum = get_lefteye_frustum()
+		leftcam.set_frustum(near * frustum.pos.x, near * (frustum.pos.x+frustum.size.x),near * frustum.pos.y, near * (frustum.pos.y+frustum.size.y),near,far)
+		
 
 	if (rightcam):
 		rightcam.set_global_transform(get_righteye_global_transform())
+
+		var frustum = get_righteye_frustum()
+		rightcam.set_frustum(near * frustum.pos.x, near * (frustum.pos.x+frustum.size.x),near * frustum.pos.y, near * (frustum.pos.y+frustum.size.y),near,far)
 	
 	# now set our projection matrices, again these probably never change
 	# but could alter based on IPD being updated on the headset

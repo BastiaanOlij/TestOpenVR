@@ -50,7 +50,7 @@ srgb/enabled = false
 
 [node name="left_eye_viewport" type="Viewport" parent="."]
 
-rect = Rect2( 0, 0, 1512, 1680 )
+rect = Rect2( 0, 0, 512, 512 )
 own_world = false
 world = null
 transparent_bg = false
@@ -68,10 +68,12 @@ gui/disable_input = false
 [node name="left_eye_camera" type="Camera" parent="left_eye_viewport"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( -0.946309, 0.062533, 0.317159, 0.0246364, 0.992209, -0.122123, -0.322324, -0.107752, -0.940477, 0.831318, 0.553569, 1.43955 )
-projection = 0
-fov = 110.0
-eye = 0
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.035, 1.75, 0 )
+projection = 2
+left = -0.054485
+right = 0.060985
+top = -0.057735
+bottom = 0.057735
 near = 0.1
 far = 1000.0
 keep_aspect = 1
@@ -83,7 +85,7 @@ v_offset = 0.0
 
 [node name="right_eye_viewport" type="Viewport" parent="."]
 
-rect = Rect2( 0, 0, 1512, 1680 )
+rect = Rect2( 0, 0, 512, 512 )
 own_world = false
 world = null
 transparent_bg = false
@@ -101,10 +103,12 @@ gui/disable_input = false
 [node name="right_eye_camera" type="Camera" parent="right_eye_viewport"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( -0.946309, 0.062533, 0.317159, 0.0246364, 0.992209, -0.122123, -0.322324, -0.107752, -0.940477, 0.897086, 0.551857, 1.46195 )
-projection = 0
-fov = 110.0
-eye = 0
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.035, 1.75, 0 )
+projection = 2
+left = -0.060985
+right = 0.054485
+top = -0.057735
+bottom = 0.057735
 near = 0.1
 far = 1000.0
 keep_aspect = 1
@@ -129,10 +133,10 @@ centered = false
 [node name="HMD" type="SpatialTracker" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( -0.946324, 0.062496, 0.317121, 0.024656, 0.992228, -0.121965, -0.322278, -0.1076, -0.94051, 0.869027, 0.550889, 1.43645 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0 )
 interface = 0
 tracked_device_index = 0
-tracked_device_name = "generic_hmd"
+tracked_device_name = "Not initialised"
 script/script = ExtResource( 1 )
 
 [node name="TestCube" type="TestCube" parent="HMD"]
@@ -159,7 +163,7 @@ geometry/baked_light_tex_id = 0
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 interface = 0
 tracked_device_index = 1
-tracked_device_name = "vr_controller_vive_1_5"
+tracked_device_name = "Not initialised"
 
 [node name="TestCube" type="TestCube" parent="Controller 1"]
 
@@ -183,10 +187,9 @@ geometry/baked_light_tex_id = 0
 [node name="Controller 2" type="SpatialTracker" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( -0.987983, 0.148217, -0.0438286, 0.154525, 0.953327, -0.259402, 0.00333521, -0.263058, -0.964774, 1.02009, 0.793715, 1.51304 )
 interface = 0
 tracked_device_index = 2
-tracked_device_name = "vr_controller_vive_1_5"
+tracked_device_name = "Not initialised"
 
 [node name="TestCube" type="TestCube" parent="Controller 2"]
 
@@ -210,10 +213,9 @@ geometry/baked_light_tex_id = 0
 [node name="Base station 1" type="SpatialTracker" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( -0.633269, -0.486736, 0.601713, -0.0155611, 0.785326, 0.618887, -0.773775, 0.382559, -0.504897, 1.6739, 2.19017, -1.01306 )
 interface = 0
 tracked_device_index = 3
-tracked_device_name = "lh_basestation_vive"
+tracked_device_name = "Not initialised"
 
 [node name="TestCube" type="TestCube" parent="Base station 1"]
 
@@ -239,7 +241,7 @@ geometry/baked_light_tex_id = 0
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 interface = 0
 tracked_device_index = 40
-tracked_device_name = ""
+tracked_device_name = "Not initialised"
 
 [node name="TestCube" type="TestCube" parent="Base station 2"]
 
