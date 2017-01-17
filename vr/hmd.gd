@@ -1,5 +1,4 @@
-tool
-extends SpatialTracker
+extends OpenVRHMD
 
 func _ready():
 	# note, if we don't want something to run while editing:

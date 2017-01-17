@@ -118,25 +118,18 @@ environment = null
 h_offset = 0.0
 v_offset = 0.0
 
-[node name="OutputVR" type="OutputVR" parent="."]
-
-lefteye_viewport = NodePath("../left_eye_viewport")
-righteye_viewport = NodePath("../right_eye_viewport")
-interface = 0
-
 [node name="ViewportSprite" type="ViewportSprite" parent="."]
 
 transform/scale = Vector2( 0.3, 0.3 )
 viewport = NodePath("../left_eye_viewport")
 centered = false
 
-[node name="HMD" type="SpatialTracker" parent="."]
+[node name="HMD" type="OpenVRHMD" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0 )
-interface = 0
-tracked_device_index = 0
-tracked_device_name = "Not initialised"
+lefteye_viewport = NodePath("../left_eye_viewport")
+righteye_viewport = NodePath("../right_eye_viewport")
 script/script = ExtResource( 1 )
 
 [node name="TestCube" type="TestCube" parent="HMD"]
@@ -158,12 +151,10 @@ geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
 
-[node name="Controller 1" type="SpatialTracker" parent="."]
+[node name="Controller 1" type="OpenVRController" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-interface = 0
-tracked_device_index = 1
-tracked_device_name = "Not initialised"
+controller_index = 1
 
 [node name="TestCube" type="TestCube" parent="Controller 1"]
 
@@ -184,12 +175,10 @@ geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
 
-[node name="Controller 2" type="SpatialTracker" parent="."]
+[node name="Controller 2" type="OpenVRController" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-interface = 0
-tracked_device_index = 2
-tracked_device_name = "Not initialised"
+controller_index = 2
 
 [node name="TestCube" type="TestCube" parent="Controller 2"]
 
@@ -210,12 +199,10 @@ geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
 
-[node name="Base station 1" type="SpatialTracker" parent="."]
+[node name="Base station 1" type="OpenVRBaseStation" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-interface = 0
-tracked_device_index = 3
-tracked_device_name = "Not initialised"
+basestation_index = 1
 
 [node name="TestCube" type="TestCube" parent="Base station 1"]
 
@@ -236,12 +223,10 @@ geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
 
-[node name="Base station 2" type="SpatialTracker" parent="."]
+[node name="Base station 2" type="OpenVRBaseStation" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-interface = 0
-tracked_device_index = 40
-tracked_device_name = "Not initialised"
+basestation_index = 2
 
 [node name="TestCube" type="TestCube" parent="Base station 2"]
 
