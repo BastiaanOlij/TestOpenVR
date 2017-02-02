@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://vr/hmd.gd" type="Script" id=1]
+[ext_resource path="res://vr/vr_controller_vive_1_5.msh" type="Mesh" id=2]
+[ext_resource path="res://vr/lh_basestation_vive.msh" type="Mesh" id=3]
 
 [sub_resource type="Environment" id=1]
 
@@ -74,7 +76,7 @@ left = -0.54485
 right = 0.60985
 top = -0.57735
 bottom = 0.57735
-near = 0.1
+near = 0.05
 far = 1000.0
 keep_aspect = 1
 current = true
@@ -109,7 +111,7 @@ left = -0.60985
 right = 0.54485
 top = -0.57735
 bottom = 0.57735
-near = 0.1
+near = 0.05
 far = 1000.0
 keep_aspect = 1
 current = true
@@ -118,10 +120,17 @@ environment = null
 h_offset = 0.0
 v_offset = 0.0
 
-[node name="ViewportSprite" type="ViewportSprite" parent="."]
+[node name="ViewportSprite_left" type="ViewportSprite" parent="."]
 
 transform/scale = Vector2( 0.3, 0.3 )
 viewport = NodePath("../left_eye_viewport")
+centered = false
+
+[node name="ViewportSprite_right" type="ViewportSprite" parent="."]
+
+transform/pos = Vector2( 156, 0 )
+transform/scale = Vector2( 0.3, 0.3 )
+viewport = NodePath("../right_eye_viewport")
 centered = false
 
 [node name="HMD" type="OpenVRHMD" parent="."]
@@ -156,10 +165,9 @@ geometry/baked_light_tex_id = 0
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 controller_index = 1
 
-[node name="TestCube" type="TestCube" parent="Controller 1"]
+[node name="MeshInstance" type="MeshInstance" parent="Controller 1"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
 layers = 1
 geometry/visible = true
 geometry/material_override = null
@@ -174,16 +182,18 @@ geometry/depth_scale = false
 geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
+mesh/mesh = ExtResource( 2 )
+mesh/skeleton = NodePath("..")
+material/0 = null
 
 [node name="Controller 2" type="OpenVRController" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 controller_index = 2
 
-[node name="TestCube" type="TestCube" parent="Controller 2"]
+[node name="MeshInstance" type="MeshInstance" parent="Controller 2"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
 layers = 1
 geometry/visible = true
 geometry/material_override = null
@@ -198,16 +208,18 @@ geometry/depth_scale = false
 geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
+mesh/mesh = ExtResource( 2 )
+mesh/skeleton = NodePath("..")
+material/0 = null
 
 [node name="Base station 1" type="OpenVRBaseStation" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 basestation_index = 1
 
-[node name="TestCube" type="TestCube" parent="Base station 1"]
+[node name="MeshInstance" type="MeshInstance" parent="Base station 1"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
 layers = 1
 geometry/visible = true
 geometry/material_override = null
@@ -222,16 +234,18 @@ geometry/depth_scale = false
 geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
+mesh/mesh = ExtResource( 3 )
+mesh/skeleton = NodePath("..")
+material/0 = null
 
 [node name="Base station 2" type="OpenVRBaseStation" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 basestation_index = 2
 
-[node name="TestCube" type="TestCube" parent="Base station 2"]
+[node name="MeshInstance" type="MeshInstance" parent="Base station 2"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
 layers = 1
 geometry/visible = true
 geometry/material_override = null
@@ -246,6 +260,9 @@ geometry/depth_scale = false
 geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
+mesh/mesh = ExtResource( 3 )
+mesh/skeleton = NodePath("..")
+material/0 = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 

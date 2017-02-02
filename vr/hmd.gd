@@ -9,6 +9,12 @@ func _ready():
 	get_parent().get_node("left_eye_viewport").set_rect(Rect2(0.0, 0.0, size.x, size.y))
 	get_parent().get_node("right_eye_viewport").set_rect(Rect2(0.0, 0.0, size.x, size.y))
 	
+	var winsize = OS.get_window_size()
+	var scale = (winsize.x - 5.0) / (2.0 * size.x)
+	get_parent().get_node("ViewportSprite_left").set_scale(Vector2(scale, scale))
+	get_parent().get_node("ViewportSprite_right").set_pos(Vector2(winsize.x / 2.0, 0.0))
+	get_parent().get_node("ViewportSprite_right").set_scale(Vector2(scale, scale))
+	
 	# note, process is always turned on for this, don't turn it off!
 	
 func _process(delta):
@@ -18,21 +24,23 @@ func _process(delta):
 
 	var leftcam = get_parent().get_node("left_eye_viewport/left_eye_camera")
 	var rightcam = get_parent().get_node("right_eye_viewport/right_eye_camera")
-	var near = 0.1
+	var near = 0.05
 	var far = 1000.0
 	
 	if (leftcam):
 		leftcam.set_global_transform(get_lefteye_global_transform())
 		
 		var frustum = get_lefteye_frustum()
-		leftcam.set_frustum(frustum.pos.x, (frustum.pos.x+frustum.size.x),frustum.pos.y, (frustum.pos.y+frustum.size.y),near,far)
+		# we are abusing size to store our right and bottom values
+		leftcam.set_frustum(frustum.pos.x, frustum.size.x,frustum.pos.y, frustum.size.y,near,far)
 		
 
 	if (rightcam):
 		rightcam.set_global_transform(get_righteye_global_transform())
 
 		var frustum = get_righteye_frustum()
-		rightcam.set_frustum(frustum.pos.x, (frustum.pos.x+frustum.size.x),frustum.pos.y, (frustum.pos.y+frustum.size.y),near,far)
+		# we are abusing size to store our right and bottom values
+		rightcam.set_frustum(frustum.pos.x, frustum.size.x,frustum.pos.y, frustum.size.y,near,far)
 	
 	# now set our projection matrices, again these probably never change
 	# but could alter based on IPD being updated on the headset
