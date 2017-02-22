@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://vr/hmd.gd" type="Script" id=1]
-[ext_resource path="res://vr/vr_controller_vive_1_5.msh" type="Mesh" id=2]
-[ext_resource path="res://vr/lh_basestation_vive.msh" type="Mesh" id=3]
+[ext_resource path="res://vr/vr_controller/vr_controller.tscn" type="PackedScene" id=2]
+[ext_resource path="res://vr/vr_basestation/vr_basestation.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Environment" id=1]
 
@@ -122,16 +122,21 @@ v_offset = 0.0
 
 [node name="ViewportSprite_left" type="ViewportSprite" parent="."]
 
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 1.80957, 1.80957 )
 viewport = NodePath("../left_eye_viewport")
 centered = false
 
 [node name="ViewportSprite_right" type="ViewportSprite" parent="."]
 
-transform/pos = Vector2( 156, 0 )
-transform/scale = Vector2( 0.3, 0.3 )
+transform/pos = Vector2( 929, 0 )
+transform/scale = Vector2( 1.80957, 1.80957 )
 viewport = NodePath("../right_eye_viewport")
 centered = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+environment = SubResource( 1 )
 
 [node name="HMD" type="OpenVRHMD" parent="."]
 
@@ -145,6 +150,7 @@ script/script = ExtResource( 1 )
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform/local = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
+visibility/visible = false
 layers = 1
 geometry/visible = true
 geometry/material_override = null
@@ -160,113 +166,23 @@ geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
 
-[node name="Controller 1" type="OpenVRController" parent="."]
+[node name="Controller 1" parent="." instance=ExtResource( 2 )]
 
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-controller_index = 1
+device_name = "Not initialized"
 
-[node name="MeshInstance" type="MeshInstance" parent="Controller 1"]
+[node name="Controller 2" parent="." instance=ExtResource( 2 )]
 
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-layers = 1
-geometry/visible = true
-geometry/material_override = null
-geometry/cast_shadow = 1
-geometry/receive_shadows = true
-geometry/range_begin = 0.0
-geometry/range_end = 0.0
-geometry/extra_cull_margin = 0.0
-geometry/billboard = false
-geometry/billboard_y = false
-geometry/depth_scale = false
-geometry/visible_in_all_rooms = false
-geometry/use_baked_light = false
-geometry/baked_light_tex_id = 0
-mesh/mesh = ExtResource( 2 )
-mesh/skeleton = NodePath("..")
-material/0 = null
-
-[node name="Controller 2" type="OpenVRController" parent="."]
-
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.45, -0.15 )
 controller_index = 2
+device_name = "Not initialized"
 
-[node name="MeshInstance" type="MeshInstance" parent="Controller 2"]
+[node name="Base station 1" parent="." instance=ExtResource( 3 )]
 
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-layers = 1
-geometry/visible = true
-geometry/material_override = null
-geometry/cast_shadow = 1
-geometry/receive_shadows = true
-geometry/range_begin = 0.0
-geometry/range_end = 0.0
-geometry/extra_cull_margin = 0.0
-geometry/billboard = false
-geometry/billboard_y = false
-geometry/depth_scale = false
-geometry/visible_in_all_rooms = false
-geometry/use_baked_light = false
-geometry/baked_light_tex_id = 0
-mesh/mesh = ExtResource( 2 )
-mesh/skeleton = NodePath("..")
-material/0 = null
+transform/local = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -2, 2, -2 )
 
-[node name="Base station 1" type="OpenVRBaseStation" parent="."]
+[node name="Base station 2" parent="." instance=ExtResource( 3 )]
 
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-basestation_index = 1
-
-[node name="MeshInstance" type="MeshInstance" parent="Base station 1"]
-
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-layers = 1
-geometry/visible = true
-geometry/material_override = null
-geometry/cast_shadow = 1
-geometry/receive_shadows = true
-geometry/range_begin = 0.0
-geometry/range_end = 0.0
-geometry/extra_cull_margin = 0.0
-geometry/billboard = false
-geometry/billboard_y = false
-geometry/depth_scale = false
-geometry/visible_in_all_rooms = false
-geometry/use_baked_light = false
-geometry/baked_light_tex_id = 0
-mesh/mesh = ExtResource( 3 )
-mesh/skeleton = NodePath("..")
-material/0 = null
-
-[node name="Base station 2" type="OpenVRBaseStation" parent="."]
-
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 2, 2, 2 )
 basestation_index = 2
-
-[node name="MeshInstance" type="MeshInstance" parent="Base station 2"]
-
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-layers = 1
-geometry/visible = true
-geometry/material_override = null
-geometry/cast_shadow = 1
-geometry/receive_shadows = true
-geometry/range_begin = 0.0
-geometry/range_end = 0.0
-geometry/extra_cull_margin = 0.0
-geometry/billboard = false
-geometry/billboard_y = false
-geometry/depth_scale = false
-geometry/visible_in_all_rooms = false
-geometry/use_baked_light = false
-geometry/baked_light_tex_id = 0
-mesh/mesh = ExtResource( 3 )
-mesh/skeleton = NodePath("..")
-material/0 = null
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-
-_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-environment = SubResource( 1 )
 
 
