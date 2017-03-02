@@ -1,20 +1,19 @@
-# tool
 extends OpenVRHMD
 
 func _ready():
-	# note, if we don't want something to run while editing:
-	# gettree().is_editor_hint()
-	
 	# size our viewports
 	var size = get_recommended_rendertarget_size()
 	get_parent().get_node("left_eye_viewport").set_rect(Rect2(0.0, 0.0, size.x, size.y))
 	get_parent().get_node("right_eye_viewport").set_rect(Rect2(0.0, 0.0, size.x, size.y))
 	
+	# we show our left eye as a preview.
+	# we're goint to make a 3rd camera optional so we can overlay a green screen
+	# also note that we should find a way to get our fps at a fraction of what we're rendering
+	# to the hmd
 	var winsize = OS.get_window_size()
-	var scale = (winsize.x - 5.0) / (2.0 * size.x)
+	var scale = winsize.x / size.x
+	get_parent().get_node("ViewportSprite_left").set_offset(Vector2(0.0, (winsize.y - (size.y * scale)) / 2.0))
 	get_parent().get_node("ViewportSprite_left").set_scale(Vector2(scale, scale))
-	get_parent().get_node("ViewportSprite_right").set_pos(Vector2(winsize.x / 2.0, 0.0))
-	get_parent().get_node("ViewportSprite_right").set_scale(Vector2(scale, scale))
 	
 	# note, process is always turned on for this, don't turn it off!
 	
@@ -38,10 +37,7 @@ func _process(delta):
 
 	if (rightcam):
 		rightcam.set_global_transform(get_righteye_global_transform())
-
+		
 		var frustum = get_righteye_frustum()
 		# we are abusing size to store our right and bottom values
 		rightcam.set_frustum(frustum.pos.x, frustum.size.x,frustum.pos.y, frustum.size.y,near,far)
-	
-	# now set our projection matrices, again these probably never change
-	# but could alter based on IPD being updated on the headset

@@ -1,16 +1,17 @@
-[gd_scene load_steps=13 format=1]
+[gd_scene load_steps=14 format=1]
 
-[ext_resource path="res://vr/vr_controller/body.msh" type="Mesh" id=1]
-[ext_resource path="res://vr/vr_controller/onepointfive_texture.png" type="Texture" id=2]
-[ext_resource path="res://vr/vr_controller/onepointfive_spec.png" type="Texture" id=3]
-[ext_resource path="res://vr/vr_controller/trackpad.msh" type="Mesh" id=4]
-[ext_resource path="res://vr/vr_controller/sys_button.msh" type="Mesh" id=5]
-[ext_resource path="res://vr/vr_controller/button.msh" type="Mesh" id=6]
-[ext_resource path="res://vr/vr_controller/led.msh" type="Mesh" id=7]
-[ext_resource path="res://vr/vr_controller/l_grip.msh" type="Mesh" id=8]
-[ext_resource path="res://vr/vr_controller/r_grip.msh" type="Mesh" id=9]
-[ext_resource path="res://vr/vr_controller/scroll_wheel.msh" type="Mesh" id=10]
-[ext_resource path="res://vr/vr_controller/trigger.msh" type="Mesh" id=11]
+[ext_resource path="res://vr/vr_controller/vr_controller.gd" type="Script" id=1]
+[ext_resource path="res://vr/vr_controller/body.msh" type="Mesh" id=2]
+[ext_resource path="res://vr/vr_controller/onepointfive_texture.png" type="Texture" id=3]
+[ext_resource path="res://vr/vr_controller/onepointfive_spec.png" type="Texture" id=4]
+[ext_resource path="res://vr/vr_controller/trackpad.msh" type="Mesh" id=5]
+[ext_resource path="res://vr/vr_controller/sys_button.msh" type="Mesh" id=6]
+[ext_resource path="res://vr/vr_controller/button.msh" type="Mesh" id=7]
+[ext_resource path="res://vr/vr_controller/led.msh" type="Mesh" id=8]
+[ext_resource path="res://vr/vr_controller/l_grip.msh" type="Mesh" id=9]
+[ext_resource path="res://vr/vr_controller/r_grip.msh" type="Mesh" id=10]
+[ext_resource path="res://vr/vr_controller/scroll_wheel.msh" type="Mesh" id=11]
+[ext_resource path="res://vr/vr_controller/trigger.msh" type="Mesh" id=12]
 
 [sub_resource type="FixedMaterial" id=1]
 
@@ -40,10 +41,10 @@ params/shader_param = 0.5
 params/glow = 0
 params/point_size = 1.0
 uv_xform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-textures/diffuse = ExtResource( 2 )
+textures/diffuse = ExtResource( 3 )
 textures/diffuse_tc = 0
 textures/detail_tc = 0
-textures/specular = ExtResource( 3 )
+textures/specular = ExtResource( 4 )
 textures/specular_tc = 0
 textures/emission_tc = 0
 textures/specular_exp_tc = 0
@@ -54,9 +55,8 @@ textures/shade_param_tc = 0
 [node name="OpenVRController" type="OpenVRController"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.45, -0.15 )
-controller_index = 1
-device_name = "Not initialized"
+controller_index = 16
+device_name = "dummy_basestation"
 button_system = 0
 button_appmenu = 0
 button_grip = 0
@@ -70,6 +70,7 @@ trigger = 0.0
 axis2 = Vector2( 0, 0 )
 axis3 = Vector2( 0, 0 )
 axis4 = Vector2( 0, 0 )
+script/script = ExtResource( 1 )
 
 [node name="Body" type="MeshInstance" parent="."]
 
@@ -88,7 +89,7 @@ geometry/depth_scale = false
 geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
-mesh/mesh = ExtResource( 1 )
+mesh/mesh = ExtResource( 2 )
 mesh/skeleton = NodePath("..")
 material/0 = SubResource( 1 )
 
@@ -109,7 +110,7 @@ geometry/depth_scale = false
 geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
-mesh/mesh = ExtResource( 4 )
+mesh/mesh = ExtResource( 5 )
 mesh/skeleton = NodePath("..")
 material/0 = SubResource( 1 )
 
@@ -130,7 +131,7 @@ geometry/depth_scale = false
 geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
-mesh/mesh = ExtResource( 5 )
+mesh/mesh = ExtResource( 6 )
 mesh/skeleton = NodePath("..")
 material/0 = SubResource( 1 )
 
@@ -151,7 +152,7 @@ geometry/depth_scale = false
 geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
-mesh/mesh = ExtResource( 6 )
+mesh/mesh = ExtResource( 7 )
 mesh/skeleton = NodePath("..")
 material/0 = SubResource( 1 )
 
@@ -172,7 +173,7 @@ geometry/depth_scale = false
 geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
-mesh/mesh = ExtResource( 7 )
+mesh/mesh = ExtResource( 8 )
 mesh/skeleton = NodePath("..")
 material/0 = SubResource( 1 )
 
@@ -193,7 +194,7 @@ geometry/depth_scale = false
 geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
-mesh/mesh = ExtResource( 8 )
+mesh/mesh = ExtResource( 9 )
 mesh/skeleton = NodePath("..")
 material/0 = SubResource( 1 )
 
@@ -214,7 +215,7 @@ geometry/depth_scale = false
 geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
-mesh/mesh = ExtResource( 9 )
+mesh/mesh = ExtResource( 10 )
 mesh/skeleton = NodePath("..")
 material/0 = SubResource( 1 )
 
@@ -236,13 +237,19 @@ geometry/depth_scale = false
 geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
-mesh/mesh = ExtResource( 10 )
+mesh/mesh = ExtResource( 11 )
 mesh/skeleton = NodePath("..")
 material/0 = SubResource( 1 )
 
-[node name="Trigger" type="MeshInstance" parent="."]
+[node name="Trigger_origin" type="Spatial" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0217106, 0.0422814 )
+
+[node name="Trigger" type="MeshInstance" parent="Trigger_origin"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0217106, -0.0422814 )
 layers = 1
 geometry/visible = true
 geometry/material_override = null
@@ -257,7 +264,7 @@ geometry/depth_scale = false
 geometry/visible_in_all_rooms = false
 geometry/use_baked_light = false
 geometry/baked_light_tex_id = 0
-mesh/mesh = ExtResource( 11 )
+mesh/mesh = ExtResource( 12 )
 mesh/skeleton = NodePath("..")
 material/0 = SubResource( 1 )
 
