@@ -11,7 +11,7 @@ https://github.com/ValveSoftware/openvr
 As Godots ignore rules filter out some of the required files. OpenVR does not give access to the source unfortunately. For now just copy bin and lib to thirdparty/openvr/.
 
 Currently compilation only works on Windows for 64bit and requires renaming openvr_api.lib to openvr_api.lib.windows.tools.64.lib.
-You also need to copy openvr.dll into the folder that contains your godot exe for it to all work.
+You also need to copy openvr_api.dll from openvr's bin directory into the folder that contains your godot exe (usually bin) for it to all work.
 In theory it should be easy to adjust the code to compile on Mac or Linux as support for both is included in OpenVR however I haven't had a chance to look into this.
 
 The sample project
