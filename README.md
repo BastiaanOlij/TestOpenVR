@@ -6,9 +6,9 @@ This is a test Godot project for testing the OpenVR enhancements I've made to Go
 Compiling
 =========
 Note that you must build Godot from source using the enhancements in the OpenVR Branch in my Godot github fork.
-You also need to make sure you obtain the contents of the bin and lib folder of the OpenVR project here:
+You also need to make sure you obtain the contents of the bin and lib folder of the OpenVR project from here:
 https://github.com/ValveSoftware/openvr
-As Godots ignore rules filter out some of the required files. OpenVR does not give access to the source unfortunately.
+As Godots ignore rules filter out some of the required files. OpenVR does not give access to the source unfortunately. For now just copy bin and lib to thirdparty/openvr/.
 
 Currently compilation only works on Windows for 64bit and requires renaming openvr_api.lib to openvr_api.lib.windows.tools.64.lib.
 You also need to copy openvr.dll into the folder that contains your godot exe for it to all work.
